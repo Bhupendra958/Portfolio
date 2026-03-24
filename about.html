@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About | Bhupendra</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<style>
+
+/* Dark professional gradient */
+
+body{
+background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
+font-family:sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* particles background */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* mouse glow effect */
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
+border-radius:50%;
+pointer-events:none;
+z-index:-1;
+transform:translate(-50%,-50%);
+}
+
+/* navbar */
+
+nav{
+background:#050d30;
+border-bottom:1px solid #1e293b;
+}
+
+/* floating icons */
+
+.float-icon{
+position:absolute;
+animation:float 6s ease-in-out infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-25px);}
+100%{transform:translateY(0px);}
+}
+
+/* cards */
+
+.card{
+background:#0f172a;
+border-radius:16px;
+padding:24px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+transition:0.4s;
+animation:fadeUp 1s ease;
+transform-style:preserve-3d;
+}
+
+.card:hover{
+box-shadow:0 15px 35px rgba(59,130,246,0.4);
+}
+
+/* timeline */
+
+.timeline{
+border-left:3px solid #3b82f6;
+padding-left:20px;
+}
+
+/* timeline animation */
+
+.timeline .card{
+opacity:0;
+transform:translateX(-40px);
+animation:timelineAnim 1s forwards;
+}
+
+.timeline .card:nth-child(2){animation-delay:0.3s}
+.timeline .card:nth-child(3){animation-delay:0.6s}
+
+@keyframes timelineAnim{
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+/* strengths cards */
+
+.skill-card{
+background:#020617;
+border-radius:16px;
+padding:24px;
+transition:0.4s;
+animation:fadeUp 1.2s ease;
+transform-style:preserve-3d;
+}
+
+.skill-card:hover{
+background:#1e293b;
+box-shadow:0 15px 35px rgba(59,130,246,0.4);
+}
+
+/* headings */
+
+.heading{
+color:#60a5fa;
+}
+
+/* animation */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+<div class="glow" id="glow"></div>
+
+<!-- FLOATING ICONS -->
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+class="float-icon w-12 top-32 left-10">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+class="float-icon w-12 top-72 right-16">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+class="float-icon w-12 bottom-40 left-20">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+class="float-icon w-12 bottom-24 right-20">
+
+
+<!-- NAVBAR -->
+
+<nav class="fixed w-full shadow-md z-50">
+
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+
+<h1 class="text-2xl font-bold text-blue-400">
+N.Bhupendra Chowdary
+</h1>
+
+<div class="space-x-8 font-semibold text-blue-300">
+
+<a href="index.html" class="hover:text-blue-500">Home</a>
+<a href="about.html" class="hover:text-blue-500">About</a>
+<a href="projects.html" class="hover:text-blue-500">Projects</a>
+<a href="certificates.html" class="hover:text-blue-500">Certificates</a>
+<a href="contact.html" class="hover:text-blue-500">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- ABOUT -->
+
+<section class="pt-32 px-6 pb-16">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-10 heading">
+About Me
+</h2>
+
+<div class="card  leading-relaxed">
+
+<p class="mb-4">
+I am <b class="text-lg">N.Bhupendra</b>, a motivated and detail-oriented developer with a strong interest in building clean, responsive, and user-friendly web applications. I enjoy working with modern technologies such as <b>HTML, CSS, Tailwind CSS, JavaScript, Node.js, PHP, and MySQL</b> and I focus on creating solutions that are both functional and visually engaging.
+</p>
+
+<p class="mb-4">
+I have developed several real-world projects, including interactive learning platforms, quiz systems, chatbots, hospital queue management systems, and dynamic websites. These projects have helped me strengthen my skills in problem-solving, logical thinking, and Full-stack development.
+</p>
+
+<p class="mb-4">
+My strengths include adaptability, teamwork, and the ability to learn quickly in fast-paced environments. I enjoy exploring new technologies and continuously improving my development skills.
+</p>
+
+<p class="mb-4">
+I am passionate about continuous growth and innovation, and I am always open to opportunities where I can contribute, collaborate, and expand my skills as a developer while building impactful digital solutions.
+</p>
+
+<p class="mb-4">
+If you would like to explore my work, please visit the <strong class="text-lg">Projects page</strong> to see the applications and systems I have developed. You can also view my <strong class="text-lg">Certificates page</strong> to learn more about my learning achievements and certifications.
+</p>
+
+<p>
+If you would like to connect with me or learn more about my professional background, feel free to visit my <strong class="text-lg">LinkedIn</strong> or <strong class="text-lg">GitHub</strong>. You can find these links on my <strong class="text-lg">Contact page</strong>.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STRENGTHS -->
+
+<section class="px-6 pb-20">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-3xl font-bold text-center mb-12 heading">
+My Strengths
+</h2>
+
+<div class="grid md:grid-cols-3 gap-10 text-center">
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/idea.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Problem Solving</h3>
+<p>Strong ability to analyze problems and develop efficient solutions.</p>
+</div>
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/conference.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Team Work</h3>
+<p>Collaborating effectively with teams to achieve project goals.</p>
+</div>
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/leadership.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Leadership</h3>
+<p>Taking initiative and guiding teams toward successful outcomes.</p>
+</div>
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/change.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Adaptability</h3>
+<p>Quickly adapting to new technologies and development environments.</p>
+</div>
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/communication.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Communication</h3>
+<p>Communicating ideas and technical concepts clearly.</p>
+</div>
+
+<div class="skill-card tilt">
+<img src="https://img.icons8.com/color/96/learning.png" class="mx-auto w-14 mb-3">
+<h3 class="font-bold text-lg">Continuous Learning</h3>
+<p>Constantly improving knowledge and exploring new technologies.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- EDUCATION -->
+
+<section class="px-6 pb-20">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-3xl font-bold text-center mb-12 heading">
+Education
+</h2>
+
+<div class="timeline space-y-8">
+
+<div class="card tilt flex justify-between">
+
+<div>
+<h3 class="font-bold text-lg">Lovely Professional University</h3>
+<p>Bachelor of Technology – Computer Science and Engineering</p>
+<p>Phagwara, Punjab, India</p>
+<p>CGPA: 6.5</p>
+</div>
+
+<span class="text-blue-400 font-semibold">
+Aug’23 – Present
+</span>
+
+</div>
+
+
+<div class="card tilt flex justify-between">
+
+<div>
+<h3 class="font-bold text-lg">Wisewoods International School</h3>
+<p>Intermediate</p>
+<p>Vanapamula, Andhra Pradesh</p>
+<p>Percentage: 78.4%</p>
+</div>
+
+<span class="text-blue-400 font-semibold">
+Jun’21 – Mar’23
+</span>
+
+</div>
+
+
+<div class="card tilt flex justify-between">
+
+<div>
+<h3 class="font-bold text-lg">Viswabharati English Medium High School</h3>
+<p>Matriculation</p>
+<p>Gudivada, Andhra Pradesh</p>
+<p>Percentage: 100%</p>
+</div>
+
+<span class="text-blue-400 font-semibold">
+Apr’11 – Mar’21
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* particles */
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:60},
+size:{value:3},
+move:{speed:2},
+line_linked:{
+enable:true,
+opacity:0.2
+}
+}
+
+});
+
+/* mouse glow */
+
+const glow=document.getElementById("glow");
+
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+
+
+/* 3D tilt effect */
+
+document.querySelectorAll(".tilt").forEach(card=>{
+
+card.addEventListener("mousemove",e=>{
+
+const rect=card.getBoundingClientRect();
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+
+const centerX=rect.width/2;
+const centerY=rect.height/2;
+
+const rotateX=(y-centerY)/15;
+const rotateY=(centerX-x)/15;
+
+card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+card.style.transform="rotateX(0) rotateY(0)";
+});
+
+});
+
+</script>
+
+</body>
+</html>

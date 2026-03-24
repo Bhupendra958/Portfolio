@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Projects | Bhupendra</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+/* background */
+
+body{
+background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
+font-family:sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* navbar */
+
+nav{
+background:#050d30;
+border-bottom:1px solid #1e293b;
+}
+
+/* project card */
+
+.project-card{
+background:#0f172a;
+border-radius:16px;
+padding:30px;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+transform-style:preserve-3d;
+}
+
+.project-card:hover{
+transform:rotateX(4deg) rotateY(4deg) scale(1.02);
+box-shadow:0 0 30px #3b82f6;
+background:#1e293b;
+}
+
+/* project image */
+
+.project-img{
+border-radius:12px;
+transition:0.4s;
+}
+
+.project-img:hover{
+transform:scale(1.05);
+}
+
+/* buttons */
+
+.btn{
+padding:10px 20px;
+border-radius:8px;
+margin-right:10px;
+font-weight:600;
+transition:0.3s;
+}
+
+.github{
+background:#2563eb;
+}
+
+.live{
+background:#22c55e;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* tech icons */
+
+.tech-icon{
+width:26px;
+display:inline-block;
+margin-right:8px;
+animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-5px)}
+100%{transform:translateY(0)}
+}
+
+/* scroll animation */
+
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav class="fixed w-full z-50">
+
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+
+<h1 class="text-2xl font-bold text-blue-400">
+N. Bhupendra Chowdary
+</h1>
+
+<div class="space-x-8 text-blue-300 font-semibold">
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="projects.html">Projects</a>
+<a href="certificates.html">Certificates</a>
+<a href="contact.html">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- PROJECT SECTION -->
+
+<section class="pt-32 pb-24 px-8">
+
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-4xl text-center font-bold mb-20 text-blue-400">
+Projects
+</h2>
+
+<!-- PARENT MEETING PORTAL (NEW PROJECT - FIRST) -->
+
+<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal mb-20">
+
+<div>
+
+<h3 class="text-2xl font-bold mb-4">
+Parent Meeting Portal
+</h3>
+
+<p class="text-gray-300 mb-4">
+
+The Parent Meeting Portal is a web-based application designed to simplify communication between parents and teachers by enabling structured meeting scheduling and real-time interaction.
+
+The system improves school management by providing a centralized platform for appointment booking, meeting tracking, and efficient communication.
+
+</p>
+
+<div id="parentMore" class="hidden text-gray-300">
+
+<ul class="list-disc ml-5 space-y-2 mb-4">
+
+<li>Online parent-teacher meeting scheduling system.</li>
+<li>Real-time meeting slot management.</li>
+<li>User-friendly dashboard for parents and teachers.</li>
+<li>Efficient communication and appointment tracking.</li>
+<li>Responsive design for all devices.</li>
+
+</ul>
+
+</div>
+
+<button onclick="toggleText('parentMore','parentBtn')" 
+id="parentBtn"
+class="text-blue-400 mb-6">
+Read More +
+</button>
+
+
+<div class="mb-6">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon">
+
+</div>
+
+<a href="https://github.com/Bhupendra958/SchoolMeeting" target="_blank" class="btn github">
+GitHub
+</a>
+
+<a href="https://school-meeting.vercel.app/" target="_blank" class="btn live">
+Live Demo
+</a>
+
+</div>
+
+
+<div>
+
+<img src="images/parent.png" class="project-img">
+
+</div>
+
+</div>
+
+
+<!-- MEDQUEUE PROJECT -->
+
+<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal mb-20">
+
+<div>
+
+<h3 class="text-2xl font-bold mb-4">
+MedQueue – Digital Queue System for Hospitals
+</h3>
+
+<p class="text-gray-300 mb-4">
+
+MedQueue is a web-based digital queue management system designed to reduce hospital waiting times by enabling online appointment booking and real-time token generation.
+
+The platform improves hospital workflow efficiency by digitizing queue handling and providing a structured appointment management system.
+
+</p>
+
+<div id="medMore" class="hidden text-gray-300">
+
+<ul class="list-disc ml-5 space-y-2 mb-4">
+
+<li>Online doctor appointment booking with automated token generation.</li>
+<li>Department-wise doctor filtering system.</li>
+<li>Admin panel for walk-in registrations and queue monitoring.</li>
+<li>User dashboard showing appointment details and token tracking.</li>
+<li>Responsive UI optimized for mobile and desktop.</li>
+
+</ul>
+
+</div>
+
+<button onclick="toggleText('medMore','medBtn')" 
+id="medBtn"
+class="text-blue-400 mb-6">
+Read More +
+</button>
+
+
+<div class="mb-6">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon">
+
+
+</div>
+
+<a href="https://github.com/Bhupendra958/MedQ" target="_blank" class="btn github">
+GitHub
+</a>
+
+<a href="http://medqueue.infinityfree.me" target="_blank" class="btn live">
+Live Demo
+</a>
+
+</div>
+
+
+<div>
+
+<img src="images/medqueue.png" class="project-img">
+
+</div>
+
+</div>
+
+
+
+<!-- CLOVER EDU PROJECT -->
+
+<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal">
+
+<div>
+
+<h3 class="text-2xl font-bold mb-4">
+CloverEduForKids – Interactive Learning Platform
+</h3>
+
+<p class="text-gray-300 mb-4">
+
+CloverEduForKids is an interactive educational website designed to make learning engaging and accessible for children through quizzes, stories, and subject-based learning modules.
+
+The platform focuses on combining education with interactivity to improve curiosity, logical thinking, and academic skills.
+
+</p>
+
+<div id="eduMore" class="hidden text-gray-300">
+
+<ul class="list-disc ml-5 space-y-2 mb-4">
+
+<li>Subject-based learning modules including Math, Science, and English.</li>
+<li>Interactive quiz system with timers and multiple difficulty levels.</li>
+<li>Moral story section promoting positive thinking.</li>
+<li>Educational video integration for visual learning.</li>
+<li>Responsive design for mobile, tablet, and desktop devices.</li>
+
+</ul>
+
+</div>
+
+<button onclick="toggleText('eduMore','eduBtn')" 
+id="eduBtn"
+class="text-blue-400 mb-6">
+Read More +
+</button>
+
+
+<div class="mb-6">
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon">
+
+
+</div>
+
+<a href="https://github.com/Bhupendra958/CloverEdcForKids" target="_blank" class="btn github">
+GitHub
+</a>
+
+<a href="http://cloverkids123.infinityfree.me" target="_blank" class="btn live">
+Live Demo
+</a>
+
+</div>
+
+
+<div>
+
+<img src="images/edu1.png" class="project-img">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* read more toggle */
+
+function toggleText(section,btn){
+
+const text=document.getElementById(section);
+const button=document.getElementById(btn);
+
+if(text.classList.contains("hidden")){
+
+text.classList.remove("hidden");
+button.innerText="Read Less -";
+
+}else{
+
+text.classList.add("hidden");
+button.innerText="Read More +";
+
+}
+
+}
+
+
+/* scroll animation */
+
+function reveal(){
+
+var reveals=document.querySelectorAll(".reveal");
+
+for(var i=0;i<reveals.length;i++){
+
+var windowHeight=window.innerHeight;
+var elementTop=reveals[i].getBoundingClientRect().top;
+
+if(elementTop < windowHeight - 100){
+reveals[i].classList.add("active");
+}
+
+}
+
+}
+
+window.addEventListener("scroll",reveal);
+
+</script>
+
+</body>
+</html>

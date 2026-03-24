@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | Bhupendra</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<style>
+
+/* background */
+
+body{
+background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
+font-family:sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* particles */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* mouse glow */
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
+border-radius:50%;
+pointer-events:none;
+z-index:-1;
+transform:translate(-50%,-50%);
+}
+
+/* navbar */
+
+nav{
+background:#050d30;
+border-bottom:1px solid #1e293b;
+}
+
+/* floating icons */
+
+.float-icon{
+position:absolute;
+animation:float 6s ease-in-out infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-25px);}
+100%{transform:translateY(0px);}
+}
+
+/* animated icon */
+
+.social-icon{
+transition:0.4s;
+animation:iconFloat 4s infinite ease-in-out;
+}
+
+@keyframes iconFloat{
+0%{transform:translateY(0)}
+50%{transform:translateY(-6px)}
+100%{transform:translateY(0)}
+}
+
+/* cards */
+
+.contact-card{
+background:#0f172a;
+border-radius:16px;
+padding:28px;
+transition:0.4s;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+.contact-card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:
+0 0 15px #3b82f6,
+0 0 30px #3b82f6,
+0 0 50px #3b82f6;
+background:#1e293b;
+}
+
+/* button */
+
+.copy-btn{
+margin-top:8px;
+padding:6px 14px;
+background:#2563eb;
+border-radius:6px;
+font-size:14px;
+transition:0.3s;
+}
+
+.copy-btn:hover{
+background:#3b82f6;
+}
+
+.heading{
+color:#60a5fa;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+<div class="glow" id="glow"></div>
+
+<!-- FLOATING ICONS -->
+
+<img src="https://img.icons8.com/color/96/email.png"
+class="float-icon w-12 top-32 left-10">
+
+<img src="https://img.icons8.com/color/96/phone.png"
+class="float-icon w-12 top-72 right-16">
+
+<img src="https://img.icons8.com/color/96/linkedin.png"
+class="float-icon w-12 bottom-40 left-20">
+
+<img src="https://img.icons8.com/color/96/github.png"
+class="float-icon w-12 bottom-24 right-20">
+
+
+
+<!-- NAVBAR -->
+
+<nav class="fixed w-full shadow-md z-50">
+
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+
+<h1 class="text-2xl font-bold text-blue-400">
+N.Bhupendra Chowdary
+</h1>
+
+<div class="space-x-8 font-semibold text-blue-300">
+
+<a href="index.html" class="hover:text-blue-500">Home</a>
+<a href="about.html" class="hover:text-blue-500">About</a>
+<a href="projects.html" class="hover:text-blue-500">Projects</a>
+<a href="certificates.html" class="hover:text-blue-500">Certificates</a>
+<a href="contact.html" class="hover:text-blue-500">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- CONTACT -->
+
+<section class="pt-32 pb-24 px-6">
+
+<div class="max-w-6xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-14 heading">
+Contact Me
+</h2>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+
+<!-- EMAIL -->
+
+<div class="contact-card">
+
+<img src="https://img.icons8.com/color/96/email.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">Email</h3>
+
+<p id="emailText">nbhupendra958@gmail.com</p>
+
+<button onclick="copyEmail()" id="emailBtn" class="copy-btn">
+Copy Email
+</button>
+
+</div>
+
+
+<!-- PHONE -->
+
+<div class="contact-card">
+
+<img src="https://img.icons8.com/color/96/phone.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">Phone</h3>
+
+<p id="phoneText">+91 94936 89379</p>
+
+<button onclick="copyPhone()" id="phoneBtn" class="copy-btn">
+Copy Phone
+</button>
+
+</div>
+
+
+<!-- LINKEDIN -->
+
+<div class="contact-card">
+
+<img src="https://img.icons8.com/color/96/linkedin.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+
+<a href="https://www.linkedin.com/in/bhupendra27/" target="_blank" class="text-blue-400 hover:underline">
+View Profile
+</a>
+
+</div>
+
+
+<!-- GITHUB -->
+
+<div class="contact-card">
+
+<img src="https://img.icons8.com/color/96/github.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">GitHub</h3>
+
+<a href="https://github.com/Bhupendra958" target="_blank" class="text-blue-400 hover:underline">
+View Projects
+</a>
+
+</div>
+
+
+<!-- HACKERRANK -->
+
+<div class="contact-card">
+
+<img src="/images/hr.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">HackerRank</h3>
+
+<a href="https://www.hackerrank.com/profile/nbhupendra958" target="_blank" class="text-blue-400 hover:underline">
+View Profile
+</a>
+
+</div>
+
+
+<!-- LEETCODE -->
+
+<div class="contact-card">
+
+<img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo.png"
+class="mx-auto w-16 mb-4 social-icon">
+
+<h3 class="text-xl font-semibold mb-2">LeetCode</h3>
+
+<a href="https://leetcode.com/u/nbhupendra958/" target="_blank" class="text-blue-400 hover:underline">
+View Profile
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+/* particles */
+
+particlesJS("particles-js",{
+particles:{
+number:{value:60},
+size:{value:3},
+move:{speed:2},
+line_linked:{enable:true,opacity:0.2}
+}
+});
+
+/* mouse glow */
+
+const glow=document.getElementById("glow");
+
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+
+/* copy email */
+
+function copyEmail(){
+
+let text=document.getElementById("emailText").innerText;
+
+navigator.clipboard.writeText(text);
+
+let btn=document.getElementById("emailBtn");
+
+btn.innerText="Copied!";
+
+setTimeout(()=>{
+btn.innerText="Copy Email";
+},2000);
+
+}
+
+/* copy phone */
+
+function copyPhone(){
+
+let text=document.getElementById("phoneText").innerText;
+
+navigator.clipboard.writeText(text);
+
+let btn=document.getElementById("phoneBtn");
+
+btn.innerText="Copied!";
+
+setTimeout(()=>{
+btn.innerText="Copy Phone";
+},2000);
+
+}
+
+</script>
+
+</body>
+</html>

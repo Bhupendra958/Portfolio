@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Certificates | Bhupendra</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+
+<style>
+
+/* background */
+
+body{
+background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
+font-family:sans-serif;
+color:white;
+overflow-x:hidden;
+}
+
+/* particles */
+
+#particles-js{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* glow */
+
+.glow{
+position:fixed;
+width:300px;
+height:300px;
+background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
+border-radius:50%;
+pointer-events:none;
+z-index:-1;
+transform:translate(-50%,-50%);
+}
+
+/* navbar */
+
+nav{
+background:#050d30;
+border-bottom:1px solid #1e293b;
+}
+
+/* floating icons */
+
+.float-icon{
+position:absolute;
+animation:float 6s ease-in-out infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-25px);}
+100%{transform:translateY(0px);}
+}
+
+/* certificate cards */
+
+.cert-card{
+background:#0f172a;
+border-radius:16px;
+padding:24px;
+transition:0.4s;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+text-align:center;
+}
+
+.cert-card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:
+0 0 15px #3b82f6,
+0 0 30px #3b82f6;
+background:#1e293b;
+}
+
+/* certificate image */
+
+.cert-img{
+border-radius:10px;
+margin-top:12px;
+transition:0.3s;
+}
+
+.cert-img:hover{
+transform:scale(1.05);
+}
+
+/* platform logo */
+
+.platform-logo{
+width:45px;
+margin:auto;
+margin-bottom:10px;
+}
+
+.heading{
+color:#60a5fa;
+}
+
+.sort-btn{
+background:#2563eb;
+padding:8px 16px;
+border-radius:6px;
+margin:6px;
+}
+
+.sort-btn:hover{
+background:#3b82f6;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+<div class="glow"></div>
+
+<!-- FLOATING ICONS -->
+
+<img src="https://img.icons8.com/color/96/certificate.png"
+class="float-icon w-12 top-32 left-10">
+
+<img src="https://img.icons8.com/color/96/certificate.png"
+class="float-icon w-12 top-72 right-16">
+
+<img src="https://img.icons8.com/color/96/certificate.png"
+class="float-icon w-12 bottom-40 left-20">
+
+<img src="https://img.icons8.com/color/96/certificate.png"
+class="float-icon w-12 bottom-24 right-20">
+
+
+<!-- NAVBAR -->
+
+<nav class="fixed w-full shadow-md z-50">
+
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+
+<h1 class="text-2xl font-bold text-blue-400">
+N.Bhupendra Chowdary
+</h1>
+
+<div class="space-x-8 font-semibold text-blue-300">
+
+<a href="index.html" class="hover:text-blue-500">Home</a>
+<a href="about.html" class="hover:text-blue-500">About</a>
+<a href="projects.html" class="hover:text-blue-500">Projects</a>
+<a href="certificates.html" class="hover:text-blue-500">Certificates</a>
+<a href="contact.html" class="hover:text-blue-500">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- CERTIFICATES -->
+
+<section class="pt-32 pb-24 px-6">
+
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-4xl font-bold text-center mb-6 heading">
+My Certificates
+</h2>
+
+<div class="text-center mb-10">
+
+<button class="sort-btn" onclick="sortNewest()">Newest</button>
+<button class="sort-btn" onclick="sortOldest()">Oldest</button>
+
+</div>
+
+<div id="certContainer" class="grid md:grid-cols-2 gap-12">
+
+
+<!-- CERTIFICATE 1 -->
+
+<div class="cert-card" data-date="2023-11">
+
+<img src="https://img.icons8.com/color/96/free-code-camp.png"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Responsive Web Design
+</h3>
+
+<p class="text-gray-400">
+freeCodeCamp
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Nov 2023
+</p>
+
+<a href="images/c1.png" target="_blank">
+
+<img src="images/c1.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+
+
+<!-- CERTIFICATE 2 -->
+
+<div class="cert-card" data-date="2024-11">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Computer Communications Specialization
+</h3>
+
+<p class="text-gray-400">
+Coursera
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Nov 2024
+</p>
+
+<a href="images/c2.png" target="_blank">
+
+<img src="images/c2.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+
+
+<!-- CERTIFICATE 3 -->
+
+<div class="cert-card" data-date="2024-09">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Introduction to Hardware and Operating Systems
+</h3>
+
+<p class="text-gray-400">
+Coursera
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Sep 2024
+</p>
+
+<a href="images/c3.png" target="_blank">
+
+<img src="images/c3.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+<!-- CERTIFICATE 4 -->
+
+<div class="cert-card" data-date="2024-10">
+
+<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Digital Systems: From Logic Gates to Processors
+</h3>
+
+<p class="text-gray-400">
+Coursera
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Oct 2024
+</p>
+
+<a href="images/c4.png" target="_blank">
+
+<img src="images/c4.png"
+class="cert-img">
+
+</a>
+</div>
+
+<!-- CERTIFICATE 5 -->
+
+<div class="cert-card" data-date="2025-08-18">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Build Generative AI Apps and Solutions with No-Code Tools
+</h3>
+
+<p class="text-gray-400">
+Infosys Springboard
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Aug 2025
+</p>
+
+<a href="images/c5.png" target="_blank">
+
+<img src="images/c5.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+<!-- CERTIFICATE 6 -->
+
+<div class="cert-card" data-date="2025-08-16">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Master Generative AI & Generative AI Tools (ChatGPT & more)
+</h3>
+
+<p class="text-gray-400">
+Infosys Springboard
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Aug 2025
+</p>
+
+<a href="images/c6.png" target="_blank">
+
+<img src="images/c6.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+<!-- CERTIFICATE 7 -->
+
+<div class="cert-card" data-date="2025-08-15">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+ChatGPT-4 Prompt Engineering: ChatGPT, Generative AI & LLM
+</h3>
+
+<p class="text-gray-400">
+Infosys Springboard
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Aug 2025
+</p>
+
+<a href="images/c7.png" target="_blank">
+
+<img src="images/c7.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+<!-- CERTIFICATE 8 -->
+
+<div class="cert-card" data-date="2025-08-12">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
+class="platform-logo">
+
+<h3 class="text-xl font-semibold">
+Computational Theory: Language Principle & Finite Automata Theory
+</h3>
+
+<p class="text-gray-400">
+Infosys Springboard
+</p>
+
+<p class="text-gray-500 mb-4">
+Issued Aug 2025
+</p>
+
+<a href="images/c8.png" target="_blank">
+
+<img src="images/c8.png"
+class="cert-img">
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* particles */
+
+particlesJS("particles-js",{
+
+particles:{
+number:{value:60},
+size:{value:3},
+move:{speed:2},
+line_linked:{enable:true,opacity:0.2}
+}
+
+});
+
+/* mouse glow */
+
+const glow=document.querySelector(".glow");
+
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.clientX+"px";
+glow.style.top=e.clientY+"px";
+});
+
+
+/* sorting */
+
+function sortNewest(){
+
+const container=document.getElementById("certContainer");
+const cards=[...container.children];
+
+cards.sort((a,b)=>b.dataset.date.localeCompare(a.dataset.date));
+
+cards.forEach(card=>container.appendChild(card));
+
+}
+
+function sortOldest(){
+
+const container=document.getElementById("certContainer");
+const cards=[...container.children];
+
+cards.sort((a,b)=>a.dataset.date.localeCompare(b.dataset.date));
+
+cards.forEach(card=>container.appendChild(card));
+
+}
+
+/* DEFAULT ORDER (NEW → OLD) */
+
+window.onload = sortNewest;
+
+</script>
+
+</body>
+</html>
