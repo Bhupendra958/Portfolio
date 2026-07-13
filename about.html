@@ -1,415 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Bhupendra</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#818cf8',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+            overflow-x: hidden;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            top: 0;
+            left: 0;
+        }
 
-<title>About | Bhupendra</title>
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6); /* slate-900 with opacity */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+        }
 
-<style>
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(99, 102, 241, 0.1);
+        }
 
-/* Dark professional gradient */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+            color: #cbd5e1;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #818cf8;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background: #6366f1;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
 
-body{
-background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
-font-family:sans-serif;
-color:white;
-overflow-x:hidden;
-}
+        /* mouse glow effect */
+        .glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
 
-/* particles background */
+        /* timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6366f1, rgba(99, 102, 241, 0.1));
+            border-radius: 2px;
+        }
 
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-2;
-}
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: #020617;
+            border: 2px solid #818cf8;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+        }
 
-/* mouse glow effect */
+        /* skills cards */
+        .skill-card {
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 20px;
+            padding: 28px 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            height: 100%;
+        }
+        .skill-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 15px rgba(99, 102, 241, 0.2);
+            transform: translateY(-10px);
+        }
 
-.glow{
-position:fixed;
-width:300px;
-height:300px;
-background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
-border-radius:50%;
-pointer-events:none;
-z-index:-1;
-transform:translate(-50%,-50%);
-}
+        /* animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-/* navbar */
-
-nav{
-background:#050d30;
-border-bottom:1px solid #1e293b;
-}
-
-/* floating icons */
-
-.float-icon{
-position:absolute;
-animation:float 6s ease-in-out infinite;
-opacity:0.8;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-25px);}
-100%{transform:translateY(0px);}
-}
-
-/* cards */
-
-.card{
-background:#0f172a;
-border-radius:16px;
-padding:24px;
-box-shadow:0 10px 25px rgba(0,0,0,0.5);
-transition:0.4s;
-animation:fadeUp 1s ease;
-transform-style:preserve-3d;
-}
-
-.card:hover{
-box-shadow:0 15px 35px rgba(59,130,246,0.4);
-}
-
-/* timeline */
-
-.timeline{
-border-left:3px solid #3b82f6;
-padding-left:20px;
-}
-
-/* timeline animation */
-
-.timeline .card{
-opacity:0;
-transform:translateX(-40px);
-animation:timelineAnim 1s forwards;
-}
-
-.timeline .card:nth-child(2){animation-delay:0.3s}
-.timeline .card:nth-child(3){animation-delay:0.6s}
-
-@keyframes timelineAnim{
-to{
-opacity:1;
-transform:translateX(0);
-}
-}
-
-/* strengths cards */
-
-.skill-card{
-background:#020617;
-border-radius:16px;
-padding:24px;
-transition:0.4s;
-animation:fadeUp 1.2s ease;
-transform-style:preserve-3d;
-}
-
-.skill-card:hover{
-background:#1e293b;
-box-shadow:0 15px 35px rgba(59,130,246,0.4);
-}
-
-/* headings */
-
-.heading{
-color:#60a5fa;
-}
-
-/* animation */
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-</style>
-
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
 </head>
-
-<body>
-
-<div id="particles-js"></div>
-<div class="glow" id="glow"></div>
-
-<!-- FLOATING ICONS -->
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-class="float-icon w-12 top-32 left-10">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-class="float-icon w-12 top-72 right-16">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-class="float-icon w-12 bottom-40 left-20">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-class="float-icon w-12 bottom-24 right-20">
-
-
-<!-- NAVBAR -->
-
-<nav class="fixed w-full shadow-md z-50">
-
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-
-<h1 class="text-2xl font-bold text-blue-400">
-N.Bhupendra Chowdary
-</h1>
-
-<div class="space-x-8 font-semibold text-blue-300">
-
-<a href="index.html" class="hover:text-blue-500">Home</a>
-<a href="about.html" class="hover:text-blue-500">About</a>
-<a href="projects.html" class="hover:text-blue-500">Projects</a>
-<a href="certificates.html" class="hover:text-blue-500">Certificates</a>
-<a href="contact.html" class="hover:text-blue-500">Contact</a>
-
-</div>
-
-</div>
-
-</nav>
-
-
-<!-- ABOUT -->
-
-<section class="pt-32 px-6 pb-16">
-
-<div class="max-w-6xl mx-auto">
-
-<h2 class="text-4xl font-bold text-center mb-10 heading">
-About Me
-</h2>
-
-<div class="card  leading-relaxed">
-
-<p class="mb-4">
-I am <b class="text-lg">N.Bhupendra</b>, a motivated and detail-oriented developer with a strong interest in building clean, responsive, and user-friendly web applications. I enjoy working with modern technologies such as <b>HTML, CSS, Tailwind CSS, JavaScript, Node.js, PHP, and MySQL</b> and I focus on creating solutions that are both functional and visually engaging.
-</p>
-
-<p class="mb-4">
-I have developed several real-world projects, including interactive learning platforms, quiz systems, chatbots, hospital queue management systems, and dynamic websites. These projects have helped me strengthen my skills in problem-solving, logical thinking, and Full-stack development.
-</p>
-
-<p class="mb-4">
-My strengths include adaptability, teamwork, and the ability to learn quickly in fast-paced environments. I enjoy exploring new technologies and continuously improving my development skills.
-</p>
-
-<p class="mb-4">
-I am passionate about continuous growth and innovation, and I am always open to opportunities where I can contribute, collaborate, and expand my skills as a developer while building impactful digital solutions.
-</p>
-
-<p class="mb-4">
-If you would like to explore my work, please visit the <strong class="text-lg">Projects page</strong> to see the applications and systems I have developed. You can also view my <strong class="text-lg">Certificates page</strong> to learn more about my learning achievements and certifications.
-</p>
-
-<p>
-If you would like to connect with me or learn more about my professional background, feel free to visit my <strong class="text-lg">LinkedIn</strong> or <strong class="text-lg">GitHub</strong>. You can find these links on my <strong class="text-lg">Contact page</strong>.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- STRENGTHS -->
-
-<section class="px-6 pb-20">
-
-<div class="max-w-6xl mx-auto">
-
-<h2 class="text-3xl font-bold text-center mb-12 heading">
-My Strengths
-</h2>
-
-<div class="grid md:grid-cols-3 gap-10 text-center">
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/idea.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Problem Solving</h3>
-<p>Strong ability to analyze problems and develop efficient solutions.</p>
-</div>
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/conference.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Team Work</h3>
-<p>Collaborating effectively with teams to achieve project goals.</p>
-</div>
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/leadership.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Leadership</h3>
-<p>Taking initiative and guiding teams toward successful outcomes.</p>
-</div>
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/change.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Adaptability</h3>
-<p>Quickly adapting to new technologies and development environments.</p>
-</div>
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/communication.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Communication</h3>
-<p>Communicating ideas and technical concepts clearly.</p>
-</div>
-
-<div class="skill-card tilt">
-<img src="https://img.icons8.com/color/96/learning.png" class="mx-auto w-14 mb-3">
-<h3 class="font-bold text-lg">Continuous Learning</h3>
-<p>Constantly improving knowledge and exploring new technologies.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- EDUCATION -->
-
-<section class="px-6 pb-20">
-
-<div class="max-w-6xl mx-auto">
-
-<h2 class="text-3xl font-bold text-center mb-12 heading">
-Education
-</h2>
-
-<div class="timeline space-y-8">
-
-<div class="card tilt flex justify-between">
-
-<div>
-<h3 class="font-bold text-lg">Lovely Professional University</h3>
-<p>Bachelor of Technology – Computer Science and Engineering</p>
-<p>Phagwara, Punjab, India</p>
-<p>CGPA: 6.5</p>
-</div>
-
-<span class="text-blue-400 font-semibold">
-Aug’23 – Present
-</span>
-
-</div>
-
-
-<div class="card tilt flex justify-between">
-
-<div>
-<h3 class="font-bold text-lg">Wisewoods International School</h3>
-<p>Intermediate</p>
-<p>Vanapamula, Andhra Pradesh</p>
-<p>Percentage: 78.4%</p>
-</div>
-
-<span class="text-blue-400 font-semibold">
-Jun’21 – Mar’23
-</span>
-
-</div>
-
-
-<div class="card tilt flex justify-between">
-
-<div>
-<h3 class="font-bold text-lg">Viswabharati English Medium High School</h3>
-<p>Matriculation</p>
-<p>Gudivada, Andhra Pradesh</p>
-<p>Percentage: 100%</p>
-</div>
-
-<span class="text-blue-400 font-semibold">
-Apr’11 – Mar’21
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<script>
-
-/* particles */
-
-particlesJS("particles-js",{
-
-particles:{
-number:{value:60},
-size:{value:3},
-move:{speed:2},
-line_linked:{
-enable:true,
-opacity:0.2
-}
-}
-
-});
-
-/* mouse glow */
-
-const glow=document.getElementById("glow");
-
-document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
-});
-
-
-/* 3D tilt effect */
-
-document.querySelectorAll(".tilt").forEach(card=>{
-
-card.addEventListener("mousemove",e=>{
-
-const rect=card.getBoundingClientRect();
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
-
-const centerX=rect.width/2;
-const centerY=rect.height/2;
-
-const rotateX=(y-centerY)/15;
-const rotateY=(centerX-x)/15;
-
-card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-
-});
-
-card.addEventListener("mouseleave",()=>{
-card.style.transform="rotateX(0) rotateY(0)";
-});
-
-});
-
-</script>
-
+<body class="antialiased selection:bg-brand-light selection:text-slate-900">
+
+    <div id="particles-js"></div>
+    <div class="glow" id="glow"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 lg:px-12 py-5">
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-white hover:text-brand-light transition-colors">
+                N.Bhupendra<span class="text-brand">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium text-sm tracking-wide">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="certificates.html" class="nav-link">Certificates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ABOUT -->
+    <section class="pt-40 px-6 pb-20 reveal">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Discover</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">About <span class="text-slate-500">Me</span></h3>
+                <div class="w-20 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="glass-card p-8 md:p-12 leading-relaxed text-slate-300 text-lg space-y-6">
+                <p>
+                    I am <strong class="text-white font-semibold">N.Bhupendra</strong>, a motivated and detail-oriented developer with a strong interest in building clean, responsive, and user-friendly web applications. I enjoy working with modern technologies such as <strong class="text-brand-light font-medium">HTML, CSS, Tailwind CSS, JavaScript, Node.js, PHP, and MySQL</strong> and I focus on creating solutions that are both functional and visually engaging.
+                </p>
+                <p>
+                    I have developed several real-world projects, including interactive learning platforms, quiz systems, chatbots, hospital queue management systems, and dynamic websites. These projects have helped me strengthen my skills in problem-solving, logical thinking, and Full-stack development.
+                </p>
+                <p>
+                    My strengths include adaptability, teamwork, and the ability to learn quickly in fast-paced environments. I enjoy exploring new technologies and continuously improving my development skills.
+                </p>
+                <p>
+                    I am passionate about continuous growth and innovation, and I am always open to opportunities where I can contribute, collaborate, and expand my skills as a developer while building impactful digital solutions.
+                </p>
+                <div class="pt-6 border-t border-slate-700/50 flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="projects.html" class="px-6 py-2.5 bg-brand hover:bg-brand-light text-white font-medium rounded-full transition-all duration-300">View Projects</a>
+                    <a href="certificates.html" class="px-6 py-2.5 bg-transparent border border-slate-600 hover:border-slate-300 text-slate-300 hover:text-white font-medium rounded-full transition-all duration-300">My Certificates</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STRENGTHS -->
+    <section class="px-6 pb-24 reveal">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Core <span class="text-slate-500">Strengths</span></h3>
+                <div class="w-16 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Strength 1 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/idea.png" class="w-10 h-10" alt="Problem Solving">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Problem Solving</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Strong ability to analyze problems and develop efficient solutions, ensuring robust functionality.</p>
+                </div>
+                <!-- Strength 2 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/conference.png" class="w-10 h-10" alt="Team Work">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Team Work</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Collaborating effectively with teams to achieve project goals, maintaining clear communication.</p>
+                </div>
+                <!-- Strength 3 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/leadership.png" class="w-10 h-10" alt="Leadership">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Leadership</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Taking initiative and guiding teams toward successful outcomes through proactive problem management.</p>
+                </div>
+                <!-- Strength 4 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/change.png" class="w-10 h-10" alt="Adaptability">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Adaptability</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Quickly adapting to new technologies, languages, and development environments as project requirements evolve.</p>
+                </div>
+                <!-- Strength 5 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/communication.png" class="w-10 h-10" alt="Communication">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Communication</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Communicating complex technical concepts clearly to both technical and non-technical stakeholders.</p>
+                </div>
+                <!-- Strength 6 -->
+                <div class="skill-card tilt group">
+                    <div class="w-16 h-16 rounded-2xl bg-brand/10 flex items-center justify-center mb-6 group-hover:bg-brand/20 transition-colors">
+                        <img src="https://img.icons8.com/color/96/learning.png" class="w-10 h-10" alt="Continuous Learning">
+                    </div>
+                    <h3 class="font-bold text-xl text-white mb-3">Continuous Learning</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Constantly improving knowledge, exploring new technologies, and keeping up with industry trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="px-6 pb-24 reveal">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Education <span class="text-slate-500">Journey</span></h3>
+                <div class="w-16 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="timeline">
+                <!-- Edu 1 -->
+                <div class="timeline-item glass-card p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1">Lovely Professional University</h3>
+                        <p class="text-brand-light font-medium text-sm mb-2">Bachelor of Technology – Computer Science and Engineering</p>
+                        <p class="text-slate-400 text-sm mb-1 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Phagwara, Punjab, India
+                        </p>
+                        <p class="text-slate-400 text-sm">CGPA: <span class="text-white font-medium">6.5</span></p>
+                    </div>
+                    <span class="px-4 py-2 bg-slate-800/80 rounded-full text-brand-light font-semibold text-sm border border-brand/20 whitespace-nowrap">
+                        Aug 2023 – Present
+                    </span>
+                </div>
+
+                <!-- Edu 2 -->
+                <div class="timeline-item glass-card p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1">Wisewoods International School</h3>
+                        <p class="text-brand-light font-medium text-sm mb-2">Intermediate</p>
+                        <p class="text-slate-400 text-sm mb-1 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Vanapamula, Andhra Pradesh
+                        </p>
+                        <p class="text-slate-400 text-sm">Percentage: <span class="text-white font-medium">78.4%</span></p>
+                    </div>
+                    <span class="px-4 py-2 bg-slate-800/80 rounded-full text-brand-light font-semibold text-sm border border-brand/20 whitespace-nowrap">
+                        Jun 2021 – Mar 2023
+                    </span>
+                </div>
+
+                <!-- Edu 3 -->
+                <div class="timeline-item glass-card p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h3 class="font-bold text-xl text-white mb-1">Viswabharati English Medium High School</h3>
+                        <p class="text-brand-light font-medium text-sm mb-2">Matriculation</p>
+                        <p class="text-slate-400 text-sm mb-1 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            Gudivada, Andhra Pradesh
+                        </p>
+                        <p class="text-slate-400 text-sm">Percentage: <span class="text-white font-medium">100%</span></p>
+                    </div>
+                    <span class="px-4 py-2 bg-slate-800/80 rounded-full text-brand-light font-semibold text-sm border border-brand/20 whitespace-nowrap">
+                        Apr 2011 – Mar 2021
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/50 py-8 text-center text-slate-500 text-sm mt-10">
+        <p>© 2026 N.Bhupendra Chowdary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* Particles */
+        if(window.particlesJS) {
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 30, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.1, random: false },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.05, width: 1 },
+                    move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: false },
+                        resize: true
+                    },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 0.1 } }
+                    }
+                },
+                retina_detect: true
+            });
+        }
+
+        /* Mouse Glow */
+        const glow = document.getElementById("glow");
+        document.addEventListener("mousemove", e => {
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
+        });
+
+        /* 3D Tilt Effect */
+        document.querySelectorAll(".tilt").forEach(card => {
+            card.addEventListener("mousemove", e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Reduced intensity for more professional feel
+                const rotateX = (y - centerY) / 25;
+                const rotateY = (centerX - x) / 25;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener("mouseleave", () => {
+                card.style.transform = "rotateX(0) rotateY(0)";
+            });
+        });
+
+        /* Scroll Reveal */
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveal.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
 </body>
 </html>

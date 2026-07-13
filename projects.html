@@ -1,413 +1,428 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Bhupendra</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#818cf8',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+            overflow-x: hidden;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-<title>Projects | Bhupendra</title>
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+            color: #cbd5e1;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #818cf8;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background: #6366f1;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
 
-<script src="https://cdn.tailwindcss.com"></script>
+        /* Project Card */
+        .project-card {
+            background: rgba(15, 23, 42, 0.6); /* slate-900 */
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
 
-<style>
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(99, 102, 241, 0.1);
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
 
-/* background */
+        .project-content {
+            position: relative;
+            z-index: 1;
+        }
 
-body{
-background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
-font-family:sans-serif;
-color:white;
-overflow-x:hidden;
-}
+        /* Project Image */
+        .project-img-container {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .project-img-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(99, 102, 241, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover .project-img-container::after {
+            opacity: 1;
+        }
 
-/* navbar */
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
 
-nav{
-background:#050d30;
-border-bottom:1px solid #1e293b;
-}
+        .project-card:hover .project-img {
+            transform: scale(1.05);
+        }
 
-/* project card */
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.project-card{
-background:#0f172a;
-border-radius:16px;
-padding:30px;
-transition:0.4s;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
-transform-style:preserve-3d;
-}
+        .btn-github {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-github:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
 
-.project-card:hover{
-transform:rotateX(4deg) rotateY(4deg) scale(1.02);
-box-shadow:0 0 30px #3b82f6;
-background:#1e293b;
-}
+        .btn-live {
+            background: #6366f1; /* brand */
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+        .btn-live:hover {
+            background: #818cf8; /* brand-light */
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+        }
 
-/* project image */
+        /* Tech Icons */
+        .tech-icon {
+            width: 32px;
+            height: 32px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .tech-icon:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
 
-.project-img{
-border-radius:12px;
-transition:0.4s;
-}
-
-.project-img:hover{
-transform:scale(1.05);
-}
-
-/* buttons */
-
-.btn{
-padding:10px 20px;
-border-radius:8px;
-margin-right:10px;
-font-weight:600;
-transition:0.3s;
-}
-
-.github{
-background:#2563eb;
-}
-
-.live{
-background:#22c55e;
-}
-
-.btn:hover{
-transform:scale(1.05);
-}
-
-/* tech icons */
-
-.tech-icon{
-width:26px;
-display:inline-block;
-margin-right:8px;
-animation:float 4s infinite ease-in-out;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-5px)}
-100%{transform:translateY(0)}
-}
-
-/* scroll animation */
-
-.reveal{
-opacity:0;
-transform:translateY(60px);
-transition:1s ease;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-</style>
-
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .blob {
+            position: fixed;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.3;
+            border-radius: 50%;
+        }
+    </style>
 </head>
-
-<body>
-
-
-<!-- NAVBAR -->
-
-<nav class="fixed w-full z-50">
-
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-
-<h1 class="text-2xl font-bold text-blue-400">
-N. Bhupendra Chowdary
-</h1>
-
-<div class="space-x-8 text-blue-300 font-semibold">
-
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="certificates.html">Certificates</a>
-<a href="contact.html">Contact</a>
-
-</div>
-
-</div>
-
-</nav>
-
-
-
-<!-- PROJECT SECTION -->
-
-<section class="pt-32 pb-24 px-8">
-
-<div class="max-w-7xl mx-auto">
-
-<h2 class="text-4xl text-center font-bold mb-20 text-blue-400">
-Projects
-</h2>
-
-<!-- PARENT MEETING PORTAL (NEW PROJECT - FIRST) -->
-
-<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal mb-20">
-
-<div>
-
-<h3 class="text-2xl font-bold mb-4">
-Parent Meeting Portal
-</h3>
-
-<p class="text-gray-300 mb-4">
-
-The Parent Meeting Portal is a web-based application designed to simplify communication between parents and teachers by enabling structured meeting scheduling and real-time interaction.
-
-The system improves school management by providing a centralized platform for appointment booking, meeting tracking, and efficient communication.
-
-</p>
-
-<div id="parentMore" class="hidden text-gray-300">
-
-<ul class="list-disc ml-5 space-y-2 mb-4">
-
-<li>Online parent-teacher meeting scheduling system.</li>
-<li>Real-time meeting slot management.</li>
-<li>User-friendly dashboard for parents and teachers.</li>
-<li>Efficient communication and appointment tracking.</li>
-<li>Responsive design for all devices.</li>
-
-</ul>
-
-</div>
-
-<button onclick="toggleText('parentMore','parentBtn')" 
-id="parentBtn"
-class="text-blue-400 mb-6">
-Read More +
-</button>
-
-
-<div class="mb-6">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon">
-
-</div>
-
-<a href="https://github.com/Bhupendra958/SchoolMeeting" target="_blank" class="btn github">
-GitHub
-</a>
-
-<a href="https://school-meeting.vercel.app/" target="_blank" class="btn live">
-Live Demo
-</a>
-
-</div>
-
-
-<div>
-
-<img src="images/parent.png" class="project-img">
-
-</div>
-
-</div>
-
-
-<!-- MEDQUEUE PROJECT -->
-
-<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal mb-20">
-
-<div>
-
-<h3 class="text-2xl font-bold mb-4">
-MedQueue – Digital Queue System for Hospitals
-</h3>
-
-<p class="text-gray-300 mb-4">
-
-MedQueue is a web-based digital queue management system designed to reduce hospital waiting times by enabling online appointment booking and real-time token generation.
-
-The platform improves hospital workflow efficiency by digitizing queue handling and providing a structured appointment management system.
-
-</p>
-
-<div id="medMore" class="hidden text-gray-300">
-
-<ul class="list-disc ml-5 space-y-2 mb-4">
-
-<li>Online doctor appointment booking with automated token generation.</li>
-<li>Department-wise doctor filtering system.</li>
-<li>Admin panel for walk-in registrations and queue monitoring.</li>
-<li>User dashboard showing appointment details and token tracking.</li>
-<li>Responsive UI optimized for mobile and desktop.</li>
-
-</ul>
-
-</div>
-
-<button onclick="toggleText('medMore','medBtn')" 
-id="medBtn"
-class="text-blue-400 mb-6">
-Read More +
-</button>
-
-
-<div class="mb-6">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon">
-
-
-</div>
-
-<a href="https://github.com/Bhupendra958/MedQ" target="_blank" class="btn github">
-GitHub
-</a>
-
-<a href="http://medqueue.infinityfree.me" target="_blank" class="btn live">
-Live Demo
-</a>
-
-</div>
-
-
-<div>
-
-<img src="images/medqueue.png" class="project-img">
-
-</div>
-
-</div>
-
-
-
-<!-- CLOVER EDU PROJECT -->
-
-<div class="grid md:grid-cols-2 gap-12 items-center project-card reveal">
-
-<div>
-
-<h3 class="text-2xl font-bold mb-4">
-CloverEduForKids – Interactive Learning Platform
-</h3>
-
-<p class="text-gray-300 mb-4">
-
-CloverEduForKids is an interactive educational website designed to make learning engaging and accessible for children through quizzes, stories, and subject-based learning modules.
-
-The platform focuses on combining education with interactivity to improve curiosity, logical thinking, and academic skills.
-
-</p>
-
-<div id="eduMore" class="hidden text-gray-300">
-
-<ul class="list-disc ml-5 space-y-2 mb-4">
-
-<li>Subject-based learning modules including Math, Science, and English.</li>
-<li>Interactive quiz system with timers and multiple difficulty levels.</li>
-<li>Moral story section promoting positive thinking.</li>
-<li>Educational video integration for visual learning.</li>
-<li>Responsive design for mobile, tablet, and desktop devices.</li>
-
-</ul>
-
-</div>
-
-<button onclick="toggleText('eduMore','eduBtn')" 
-id="eduBtn"
-class="text-blue-400 mb-6">
-Read More +
-</button>
-
-
-<div class="mb-6">
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon">
-
-
-</div>
-
-<a href="https://github.com/Bhupendra958/CloverEdcForKids" target="_blank" class="btn github">
-GitHub
-</a>
-
-<a href="http://cloverkids123.infinityfree.me" target="_blank" class="btn live">
-Live Demo
-</a>
-
-</div>
-
-
-<div>
-
-<img src="images/edu1.png" class="project-img">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<script>
-
-/* read more toggle */
-
-function toggleText(section,btn){
-
-const text=document.getElementById(section);
-const button=document.getElementById(btn);
-
-if(text.classList.contains("hidden")){
-
-text.classList.remove("hidden");
-button.innerText="Read Less -";
-
-}else{
-
-text.classList.add("hidden");
-button.innerText="Read More +";
-
-}
-
-}
-
-
-/* scroll animation */
-
-function reveal(){
-
-var reveals=document.querySelectorAll(".reveal");
-
-for(var i=0;i<reveals.length;i++){
-
-var windowHeight=window.innerHeight;
-var elementTop=reveals[i].getBoundingClientRect().top;
-
-if(elementTop < windowHeight - 100){
-reveals[i].classList.add("active");
-}
-
-}
-
-}
-
-window.addEventListener("scroll",reveal);
-
-</script>
-
+<body class="antialiased selection:bg-brand-light selection:text-slate-900">
+
+    <!-- Background Blobs -->
+    <div class="blob bg-brand-dark w-[500px] h-[500px] top-[-100px] left-[-100px]"></div>
+    <div class="blob bg-purple-900 w-[600px] h-[600px] bottom-[-200px] right-[-100px]"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 lg:px-12 py-5">
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-white hover:text-brand-light transition-colors">
+                N.Bhupendra<span class="text-brand">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium text-sm tracking-wide">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link active">Projects</a>
+                <a href="certificates.html" class="nav-link">Certificates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- PROJECT SECTION -->
+    <section class="pt-40 pb-24 px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-20">
+                <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Portfolio</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">Featured <span class="text-slate-500">Projects</span></h3>
+                <div class="w-20 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <!-- PARENT MEETING PORTAL -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center project-card reveal mb-16">
+                <div class="project-content order-2 lg:order-1">
+                    <h3 class="text-3xl font-bold mb-4 text-white">Parent Meeting Portal</h3>
+                    
+                    <p class="text-slate-400 mb-6 leading-relaxed text-lg">
+                        A web-based application designed to simplify communication between parents and teachers by enabling structured meeting scheduling and real-time interaction. It improves school management by providing a centralized platform for appointment booking, meeting tracking, and efficient communication.
+                    </p>
+
+                    <div id="parentMore" class="hidden text-slate-300 mb-6 bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+                        <ul class="list-disc ml-5 space-y-2">
+                            <li>Online parent-teacher meeting scheduling system.</li>
+                            <li>Real-time meeting slot management.</li>
+                            <li>User-friendly dashboard for parents and teachers.</li>
+                            <li>Efficient communication and appointment tracking.</li>
+                            <li>Responsive design for all devices.</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="toggleText('parentMore','parentBtn')" id="parentBtn" class="text-brand-light font-medium mb-8 hover:text-white transition-colors flex items-center gap-2">
+                        Read More 
+                        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div class="mb-8 flex flex-wrap gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon" title="React">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon" title="Tailwind CSS">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon" title="Node.js">
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://github.com/Bhupendra958/SchoolMeeting" target="_blank" class="btn btn-github">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                            GitHub
+                        </a>
+                        <a href="https://school-meeting.vercel.app/" target="_blank" class="btn btn-live">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-img-container order-1 lg:order-2">
+                    <img src="images/parent.png" alt="Parent Meeting Portal" class="project-img">
+                </div>
+            </div>
+
+            <!-- MEDQUEUE PROJECT -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center project-card reveal mb-16">
+                <div class="project-img-container">
+                    <img src="images/medqueue.png" alt="MedQueue" class="project-img">
+                </div>
+
+                <div class="project-content">
+                    <h3 class="text-3xl font-bold mb-4 text-white">MedQueue – Digital Queue System</h3>
+                    
+                    <p class="text-slate-400 mb-6 leading-relaxed text-lg">
+                        A web-based digital queue management system designed to reduce hospital waiting times by enabling online appointment booking and real-time token generation. It improves hospital workflow efficiency by digitizing queue handling and providing a structured appointment management system.
+                    </p>
+
+                    <div id="medMore" class="hidden text-slate-300 mb-6 bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+                        <ul class="list-disc ml-5 space-y-2">
+                            <li>Online doctor appointment booking with automated token generation.</li>
+                            <li>Department-wise doctor filtering system.</li>
+                            <li>Admin panel for walk-in registrations and queue monitoring.</li>
+                            <li>User dashboard showing appointment details and token tracking.</li>
+                            <li>Responsive UI optimized for mobile and desktop.</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="toggleText('medMore','medBtn')" id="medBtn" class="text-brand-light font-medium mb-8 hover:text-white transition-colors flex items-center gap-2">
+                        Read More 
+                        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div class="mb-8 flex flex-wrap gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" title="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon" title="Tailwind CSS">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon" title="PHP">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" title="MySQL">
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://github.com/Bhupendra958/MedQ" target="_blank" class="btn btn-github">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                            GitHub
+                        </a>
+                        <a href="http://medqueue.infinityfree.me" target="_blank" class="btn btn-live">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLOVER EDU PROJECT -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center project-card reveal">
+                <div class="project-content order-2 lg:order-1">
+                    <h3 class="text-3xl font-bold mb-4 text-white">CloverEduForKids</h3>
+                    
+                    <p class="text-slate-400 mb-6 leading-relaxed text-lg">
+                        An interactive educational website designed to make learning engaging and accessible for children through quizzes, stories, and subject-based learning modules. The platform focuses on combining education with interactivity to improve curiosity, logical thinking, and academic skills.
+                    </p>
+
+                    <div id="eduMore" class="hidden text-slate-300 mb-6 bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
+                        <ul class="list-disc ml-5 space-y-2">
+                            <li>Subject-based learning modules including Math, Science, and English.</li>
+                            <li>Interactive quiz system with timers and multiple difficulty levels.</li>
+                            <li>Moral story section promoting positive thinking.</li>
+                            <li>Educational video integration for visual learning.</li>
+                            <li>Responsive design for mobile, tablet, and desktop devices.</li>
+                        </ul>
+                    </div>
+
+                    <button onclick="toggleText('eduMore','eduBtn')" id="eduBtn" class="text-brand-light font-medium mb-8 hover:text-white transition-colors flex items-center gap-2">
+                        Read More 
+                        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div class="mb-8 flex flex-wrap gap-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" title="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" title="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" title="JavaScript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon" title="Tailwind CSS">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="tech-icon" title="PHP">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="tech-icon" title="MySQL">
+                    </div>
+
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://github.com/Bhupendra958/CloverEdcForKids" target="_blank" class="btn btn-github">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                            GitHub
+                        </a>
+                        <a href="http://cloverkids123.infinityfree.me" target="_blank" class="btn btn-live">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            Live Demo
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-img-container order-1 lg:order-2">
+                    <img src="images/edu1.png" alt="CloverEduForKids" class="project-img">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/50 py-8 text-center text-slate-500 text-sm mt-10">
+        <p>© 2026 N.Bhupendra Chowdary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* Read More Toggle */
+        function toggleText(section, btn) {
+            const text = document.getElementById(section);
+            const button = document.getElementById(btn);
+            const svgIcon = button.querySelector('svg');
+
+            if (text.classList.contains("hidden")) {
+                text.classList.remove("hidden");
+                button.innerHTML = `Read Less <svg class="w-4 h-4 transform rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+            } else {
+                text.classList.add("hidden");
+                button.innerHTML = `Read More <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>`;
+            }
+        }
+
+        /* Scroll Animation */
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveal.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
 </body>
 </html>

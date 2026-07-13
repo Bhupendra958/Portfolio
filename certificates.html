@@ -1,480 +1,424 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates | Bhupendra</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#818cf8',
+                            DEFAULT: '#6366f1',
+                            dark: '#4f46e5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+            overflow-x: hidden;
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            top: 0;
+            left: 0;
+        }
 
-<title>Certificates | Bhupendra</title>
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(2, 6, 23, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+            color: #cbd5e1;
+            transition: color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #818cf8;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            background: #6366f1;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
 
-<style>
+        /* Certificate Cards */
+        .cert-card {
+            background: rgba(30, 41, 59, 0.4); /* slate-800 */
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-/* background */
+        .cert-card:hover {
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(99, 102, 241, 0.15);
+        }
 
-body{
-background:linear-gradient(135deg,#050c2b,#17223c,#1e293b);
-font-family:sans-serif;
-color:white;
-overflow-x:hidden;
-}
+        .cert-img-container {
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            aspect-ratio: 1.414; /* Standard certificate aspect ratio A4 */
+        }
 
-/* particles */
+        .cert-img-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(99, 102, 241, 0.15);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-#particles-js{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-2;
-}
+        .cert-card:hover .cert-img-container::after {
+            opacity: 1;
+        }
 
-/* glow */
+        .cert-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-.glow{
-position:fixed;
-width:300px;
-height:300px;
-background:radial-gradient(circle,rgba(59,130,246,0.25),transparent 60%);
-border-radius:50%;
-pointer-events:none;
-z-index:-1;
-transform:translate(-50%,-50%);
-}
+        .cert-card:hover .cert-img {
+            transform: scale(1.05);
+        }
 
-/* navbar */
+        .platform-logo {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            object-fit: contain;
+            background: white;
+            border-radius: 10px;
+            padding: 8px;
+        }
 
-nav{
-background:#050d30;
-border-bottom:1px solid #1e293b;
-}
+        /* Sort Buttons */
+        .sort-btn {
+            background: rgba(30, 41, 59, 0.6);
+            color: #cbd5e1;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin: 0 8px;
+        }
+        .sort-btn:hover, .sort-btn.active {
+            background: #6366f1; /* brand */
+            color: white;
+            border-color: #818cf8;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
 
-/* floating icons */
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-.float-icon{
-position:absolute;
-animation:float 6s ease-in-out infinite;
-opacity:0.7;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-25px);}
-100%{transform:translateY(0px);}
-}
-
-/* certificate cards */
-
-.cert-card{
-background:#0f172a;
-border-radius:16px;
-padding:24px;
-transition:0.4s;
-box-shadow:0 10px 25px rgba(0,0,0,0.5);
-text-align:center;
-}
-
-.cert-card:hover{
-transform:translateY(-10px) scale(1.03);
-box-shadow:
-0 0 15px #3b82f6,
-0 0 30px #3b82f6;
-background:#1e293b;
-}
-
-/* certificate image */
-
-.cert-img{
-border-radius:10px;
-margin-top:12px;
-transition:0.3s;
-}
-
-.cert-img:hover{
-transform:scale(1.05);
-}
-
-/* platform logo */
-
-.platform-logo{
-width:45px;
-margin:auto;
-margin-bottom:10px;
-}
-
-.heading{
-color:#60a5fa;
-}
-
-.sort-btn{
-background:#2563eb;
-padding:8px 16px;
-border-radius:6px;
-margin:6px;
-}
-
-.sort-btn:hover{
-background:#3b82f6;
-}
-
-</style>
-
+        /* Mouse Glow */
+        .glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
-
-<body>
-
-<div id="particles-js"></div>
-<div class="glow"></div>
-
-<!-- FLOATING ICONS -->
-
-<img src="https://img.icons8.com/color/96/certificate.png"
-class="float-icon w-12 top-32 left-10">
-
-<img src="https://img.icons8.com/color/96/certificate.png"
-class="float-icon w-12 top-72 right-16">
-
-<img src="https://img.icons8.com/color/96/certificate.png"
-class="float-icon w-12 bottom-40 left-20">
-
-<img src="https://img.icons8.com/color/96/certificate.png"
-class="float-icon w-12 bottom-24 right-20">
-
-
-<!-- NAVBAR -->
-
-<nav class="fixed w-full shadow-md z-50">
-
-<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
-
-<h1 class="text-2xl font-bold text-blue-400">
-N.Bhupendra Chowdary
-</h1>
-
-<div class="space-x-8 font-semibold text-blue-300">
-
-<a href="index.html" class="hover:text-blue-500">Home</a>
-<a href="about.html" class="hover:text-blue-500">About</a>
-<a href="projects.html" class="hover:text-blue-500">Projects</a>
-<a href="certificates.html" class="hover:text-blue-500">Certificates</a>
-<a href="contact.html" class="hover:text-blue-500">Contact</a>
-
-</div>
-
-</div>
-
-</nav>
-
-
-<!-- CERTIFICATES -->
-
-<section class="pt-32 pb-24 px-6">
-
-<div class="max-w-7xl mx-auto">
-
-<h2 class="text-4xl font-bold text-center mb-6 heading">
-My Certificates
-</h2>
-
-<div class="text-center mb-10">
-
-<button class="sort-btn" onclick="sortNewest()">Newest</button>
-<button class="sort-btn" onclick="sortOldest()">Oldest</button>
-
-</div>
-
-<div id="certContainer" class="grid md:grid-cols-2 gap-12">
-
-
-<!-- CERTIFICATE 1 -->
-
-<div class="cert-card" data-date="2023-11">
-
-<img src="https://img.icons8.com/color/96/free-code-camp.png"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Responsive Web Design
-</h3>
-
-<p class="text-gray-400">
-freeCodeCamp
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Nov 2023
-</p>
-
-<a href="images/c1.png" target="_blank">
-
-<img src="images/c1.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-
-
-<!-- CERTIFICATE 2 -->
-
-<div class="cert-card" data-date="2024-11">
-
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Computer Communications Specialization
-</h3>
-
-<p class="text-gray-400">
-Coursera
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Nov 2024
-</p>
-
-<a href="images/c2.png" target="_blank">
-
-<img src="images/c2.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-
-
-<!-- CERTIFICATE 3 -->
-
-<div class="cert-card" data-date="2024-09">
-
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Introduction to Hardware and Operating Systems
-</h3>
-
-<p class="text-gray-400">
-Coursera
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Sep 2024
-</p>
-
-<a href="images/c3.png" target="_blank">
-
-<img src="images/c3.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-<!-- CERTIFICATE 4 -->
-
-<div class="cert-card" data-date="2024-10">
-
-<img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Digital Systems: From Logic Gates to Processors
-</h3>
-
-<p class="text-gray-400">
-Coursera
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Oct 2024
-</p>
-
-<a href="images/c4.png" target="_blank">
-
-<img src="images/c4.png"
-class="cert-img">
-
-</a>
-</div>
-
-<!-- CERTIFICATE 5 -->
-
-<div class="cert-card" data-date="2025-08-18">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Build Generative AI Apps and Solutions with No-Code Tools
-</h3>
-
-<p class="text-gray-400">
-Infosys Springboard
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Aug 2025
-</p>
-
-<a href="images/c5.png" target="_blank">
-
-<img src="images/c5.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-<!-- CERTIFICATE 6 -->
-
-<div class="cert-card" data-date="2025-08-16">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Master Generative AI & Generative AI Tools (ChatGPT & more)
-</h3>
-
-<p class="text-gray-400">
-Infosys Springboard
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Aug 2025
-</p>
-
-<a href="images/c6.png" target="_blank">
-
-<img src="images/c6.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-<!-- CERTIFICATE 7 -->
-
-<div class="cert-card" data-date="2025-08-15">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-ChatGPT-4 Prompt Engineering: ChatGPT, Generative AI & LLM
-</h3>
-
-<p class="text-gray-400">
-Infosys Springboard
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Aug 2025
-</p>
-
-<a href="images/c7.png" target="_blank">
-
-<img src="images/c7.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-<!-- CERTIFICATE 8 -->
-
-<div class="cert-card" data-date="2025-08-12">
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg"
-class="platform-logo">
-
-<h3 class="text-xl font-semibold">
-Computational Theory: Language Principle & Finite Automata Theory
-</h3>
-
-<p class="text-gray-400">
-Infosys Springboard
-</p>
-
-<p class="text-gray-500 mb-4">
-Issued Aug 2025
-</p>
-
-<a href="images/c8.png" target="_blank">
-
-<img src="images/c8.png"
-class="cert-img">
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<script>
-
-/* particles */
-
-particlesJS("particles-js",{
-
-particles:{
-number:{value:60},
-size:{value:3},
-move:{speed:2},
-line_linked:{enable:true,opacity:0.2}
-}
-
-});
-
-/* mouse glow */
-
-const glow=document.querySelector(".glow");
-
-document.addEventListener("mousemove",e=>{
-glow.style.left=e.clientX+"px";
-glow.style.top=e.clientY+"px";
-});
-
-
-/* sorting */
-
-function sortNewest(){
-
-const container=document.getElementById("certContainer");
-const cards=[...container.children];
-
-cards.sort((a,b)=>b.dataset.date.localeCompare(a.dataset.date));
-
-cards.forEach(card=>container.appendChild(card));
-
-}
-
-function sortOldest(){
-
-const container=document.getElementById("certContainer");
-const cards=[...container.children];
-
-cards.sort((a,b)=>a.dataset.date.localeCompare(b.dataset.date));
-
-cards.forEach(card=>container.appendChild(card));
-
-}
-
-/* DEFAULT ORDER (NEW → OLD) */
-
-window.onload = sortNewest;
-
-</script>
-
+<body class="antialiased selection:bg-brand-light selection:text-slate-900">
+
+    <div id="particles-js"></div>
+    <div class="glow" id="glow"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full glass-nav z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 lg:px-12 py-5">
+            <a href="index.html" class="text-2xl font-bold tracking-tight text-white hover:text-brand-light transition-colors">
+                N.Bhupendra<span class="text-brand">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8 font-medium text-sm tracking-wide">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="certificates.html" class="nav-link active">Certificates</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CERTIFICATES -->
+    <section class="pt-40 pb-24 px-6 lg:px-8 reveal">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold tracking-widest text-brand-light uppercase mb-3">Achievements</h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-white mb-4">My <span class="text-slate-500">Certificates</span></h3>
+                <div class="w-20 h-1 bg-brand mx-auto rounded-full"></div>
+            </div>
+
+            <div class="text-center mb-12 flex justify-center">
+                <button class="sort-btn active" id="btnNewest" onclick="sortNewest()">Newest First</button>
+                <button class="sort-btn" id="btnOldest" onclick="sortOldest()">Oldest First</button>
+            </div>
+
+            <div id="certContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- CERTIFICATE 1 -->
+                <div class="cert-card" data-date="2023-11">
+                    <div>
+                        <img src="https://img.icons8.com/color/96/free-code-camp.png" class="platform-logo" alt="freeCodeCamp">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Responsive Web Design</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">freeCodeCamp</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Nov 2023</p>
+                    </div>
+                    <a href="images/c1.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c1.png" class="cert-img" alt="Responsive Web Design Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 2 -->
+                <div class="cert-card" data-date="2024-11">
+                    <div>
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg" class="platform-logo" alt="Coursera">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Computer Communications Specialization</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Coursera</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Nov 2024</p>
+                    </div>
+                    <a href="images/c2.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c2.png" class="cert-img" alt="Computer Communications Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 3 -->
+                <div class="cert-card" data-date="2024-09">
+                    <div>
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg" class="platform-logo" alt="Coursera">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Introduction to Hardware and OS</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Coursera</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Sep 2024</p>
+                    </div>
+                    <a href="images/c3.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c3.png" class="cert-img" alt="Hardware and OS Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 4 -->
+                <div class="cert-card" data-date="2024-10">
+                    <div>
+                        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/coursera.svg" class="platform-logo" alt="Coursera">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Digital Systems: Logic Gates to Processors</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Coursera</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Oct 2024</p>
+                    </div>
+                    <a href="images/c4.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c4.png" class="cert-img" alt="Digital Systems Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 5 -->
+                <div class="cert-card" data-date="2025-08-18">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" class="platform-logo" alt="Infosys">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Generative AI Apps with No-Code Tools</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Infosys Springboard</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Aug 2025</p>
+                    </div>
+                    <a href="images/c5.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c5.png" class="cert-img" alt="Generative AI No-Code Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 6 -->
+                <div class="cert-card" data-date="2025-08-16">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" class="platform-logo" alt="Infosys">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Master Generative AI & Tools</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Infosys Springboard</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Aug 2025</p>
+                    </div>
+                    <a href="images/c6.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c6.png" class="cert-img" alt="Master Gen AI Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 7 -->
+                <div class="cert-card" data-date="2025-08-15">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" class="platform-logo" alt="Infosys">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">ChatGPT-4 Prompt Engineering & LLM</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Infosys Springboard</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Aug 2025</p>
+                    </div>
+                    <a href="images/c7.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c7.png" class="cert-img" alt="ChatGPT-4 Prompt Engineering Certificate">
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CERTIFICATE 8 -->
+                <div class="cert-card" data-date="2025-08-12">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" class="platform-logo" alt="Infosys">
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Computational Theory: Finite Automata</h3>
+                        <p class="text-brand-light font-medium text-sm mb-1">Infosys Springboard</p>
+                        <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Issued Aug 2025</p>
+                    </div>
+                    <a href="images/c8.png" target="_blank" class="block">
+                        <div class="cert-img-container">
+                            <img src="images/c8.png" class="cert-img" alt="Computational Theory Certificate">
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800/50 py-8 text-center text-slate-500 text-sm mt-10">
+        <p>© 2026 N.Bhupendra Chowdary. All rights reserved.</p>
+    </footer>
+
+    <script>
+        /* Particles */
+        if(window.particlesJS) {
+            particlesJS("particles-js", {
+                particles: {
+                    number: { value: 40, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.1, random: false },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.05, width: 1 },
+                    move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out", bounce: false }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: false },
+                        resize: true
+                    },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 0.1 } }
+                    }
+                },
+                retina_detect: true
+            });
+        }
+
+        /* Mouse Glow */
+        const glow = document.getElementById("glow");
+        document.addEventListener("mousemove", e => {
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
+        });
+
+        /* Sorting */
+        function sortNewest() {
+            document.getElementById('btnNewest').classList.add('active');
+            document.getElementById('btnOldest').classList.remove('active');
+            const container = document.getElementById("certContainer");
+            const cards = [...container.children];
+            cards.sort((a, b) => b.dataset.date.localeCompare(a.dataset.date));
+            cards.forEach(card => container.appendChild(card));
+        }
+
+        function sortOldest() {
+            document.getElementById('btnOldest').classList.add('active');
+            document.getElementById('btnNewest').classList.remove('active');
+            const container = document.getElementById("certContainer");
+            const cards = [...container.children];
+            cards.sort((a, b) => a.dataset.date.localeCompare(b.dataset.date));
+            cards.forEach(card => container.appendChild(card));
+        }
+
+        /* DEFAULT ORDER (NEW → OLD) */
+        window.onload = sortNewest;
+
+        /* Scroll Reveal */
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            const windowHeight = window.innerHeight;
+            
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveal.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
 </body>
 </html>
